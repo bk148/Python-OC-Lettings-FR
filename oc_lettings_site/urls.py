@@ -1,13 +1,13 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.views.generic import TemplateView
 
-from . import views
 
+app_name = 'c_lettings_site'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('lettings/', views.lettings_index, name='lettings_index'),
-    path('lettings/<int:letting_id>/', views.letting, name='letting'),
-    path('profiles/', views.profiles_index, name='profiles_index'),
-    path('profiles/<str:username>/', views.profile, name='profile'),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
+    path('profiles/', include('profiles.urls')),
+    path('lettings/', include('lettings.urls')),
+
 ]
