@@ -13,6 +13,8 @@ ENV PYTHONUNBUFFERED 1
 COPY . /usr/src/app
 
 # installation des dépendances
+RUN pip install --upgrade pip
+COPY ./requirements.txt /usr/src/app
 RUN \
   apk add --no-cache postgresql-libs && \
   apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
